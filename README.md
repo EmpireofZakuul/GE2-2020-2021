@@ -22,13 +22,107 @@
 ## Previous years courses
 - [2019-2020](https://github.com/skooter500/GE2-2019-2020)
 - [2018-2019](https://github.com/skooter500/GE2-2018-2019)
+
+## Previous years lab tests
+- https://github.com/skooter500/GE2-Lab-Test-2019
+- https://github.com/skooter500/GE2-Lab-Test-2019-Solution
+- https://github.com/skooter500/GE2-LabTest2-2017
+- https://github.com/skooter500/GAILabTest12017
 	
 ## Assessment Schedule	
 - Week 6 - CA proposal & Git repo
-- Week 11 - Lab Test - 20%
-- Week 13 - CA Submission & Demo - 50%
+- Week 12 - Tuesday 27th April 9am Lab Test - 20%
+- Week 13 - Friday 7th May CA Submission - 50%
+- 17 May 2021 2pm-5pm - End of year online test
 
-## Week 8
+## Week 12 - Path Finding and A*
+- A* in C#
+- Navmesh
+
+## Week 11 - Flocking in ECS
+- [Video of Thursdays class](https://www.youtube.com/watch?v=0ByqDsfdblY)
+
+
+Friday
+
+Exercise! 
+
+- Check out Avoidance scene
+- How are the feelers calculated?
+- What direction do they point?
+- How many are there? Whys this number?
+- How does the behaviour handle holes in the colliders?
+- Does the speed of the boid matter?
+- What direction is the force generated?
+- WHat alternatives are there to this?
+- How does the behaviour avoid certain obstacles while ignoring others?
+- How often are the feelers calculated and why?
+- How does the behaviour take priority over other behaviours?
+- How would you improve the behaviour?
+- How does it improve on Craig Reynolds avoidance behaviours?
+
+- [![YouTube](http://img.youtube.com/vi/qmtxqCU1X5Q/0.jpg)](https://www.youtube.com/watch?v=qmtxqCU1X5Q)
+
+Thursday
+
+Have a look at the PureECSScene in [this repo](http://github.com/skooter500/ECS2020) and answer the following questions:
+
+1. What are Entities, Components, Systems and Jobs?
+5. What is the purpose of the class BoidBootstrap?
+2. In the previous examples, we explored two approaches to creating Entities. Describe them. Which approach was used in the PureECSScene Scene?
+3. How many systems are there running in PureECSScene? What are they and what do they do?
+4. In the previous examples we looked at two different types of jobs. What were they and what were they for? 
+4. BoidSystem schedules IJobEntityBatch jobs. What are these and how does this approach differ from using Entities.ForEach? 
+4. How do these jobs selects Entities to iterate over? How are the Components on these Entities accessed? 
+6. What is a Native Container? Give some examples. What Native Containers does the BoidSystem create and what is their purpose?
+7. What Jobs does the BoidSystem schedule and in what order. Is this order significant?
+8. PartitionSpaceJob uses an algorithm called Cell Space Partitioning. How can this algorithm reduce the computational complexity the Flocking?
+9. What is the limitation of this algorithm?
+9. How are Boids assigned cells?
+10. PartitionSpaceJob uses a NativeMultiHashMap. What is the purpose of this data structure? What is the computational complexity of retrieving a value from a key in this data structure?
+10. How do Boids access the positions and rtotations of other Boids?
+11. In CountNeighboursJob, how does the algorithm determine how many cells are surrounding a boid that it needs to check for neighbours?
+12. What is the design pattern for retrieving all the values that match a given key in a NativeMultiHashMapIterator?
+13. Where does the algorithm store the neighbours for each Boid?
+14. What happens if a Boid has too many neighbours?
+15. In SeperationJob, what can cause the force to be NAN? How does the code check for this?
+16. How does Cohesion work?
+17. In AlignmentJob how are the forward vectors for each boid calculated?
+17. How is the desired forward vector calculated?
+18. How is the force generated?
+18. What algorithm does BoidJob use to combine the forces from the various behaviours together?
+19. How is the Boids rotation evaluated?
+20. In SpineSystem, what is the purpose of the WithNativeDisableParallelForRestriction annotation on the Entities.ForEach lambda?
+21. What jobs does SpineSystem schedule and what do they do?
+21. What parameters control the damping on the spine and what effect will changing these parameters have on the spines?
+21. What Native Containers does this job create?
+22. In HeadAndtailsSystem, what controls the speed of the procedural animation?
+22. How does the Head Animation work? Draw a diagram. What Unity API call is this system similar to?
+
+[![YouTube](http://img.youtube.com/vi/8J7rliGiKw0/0.jpg)](https://www.youtube.com/watch?v=8J7rliGiKw0)
+
+## Week 10 - ECS Boids
+
+- [Video of Thursday's class](https://web.microsoftstream.com/video/367c5760-bd8e-473e-b41b-7e42f5c5ff47?list=studio)
+- [Video of Friday's class](https://web.microsoftstream.com/video/725de1c7-8801-4658-bc23-715c4b9b9d67?list=studio)
+
+## Week 9 - Entity Component System - Cellular Automata & Psytrance Spirals
+
+[![YouTube](http://img.youtube.com/vi/KNymjRyr27A/0.jpg)](https://www.youtube.com/watch?v=KNymjRyr27A)
+
+## Lecture
+- [Video of Thursday's Class](https://web.microsoftstream.com/video/d962ebfb-8bd2-4ff5-bec9-c136c57c5e7b)
+- [Video of Friday's Class](https://web.microsoftstream.com/video/c889ecca-1c83-4ad0-9230-d76d0a438cd5)
+
+## Lab
+- [Cellular Automata in ECS Lecture](https://web.microsoftstream.com/video/4e9fb74b-e903-4180-ba2e-2d21bf94404f?list=studio)
+
+## Week 8 - Entity Component System - Voxel terrain * Cellular Automata in 2D & 3D
+
+## Lecture
+- [Thursday's class](https://web.microsoftstream.com/video/745bc27c-5628-440a-99b1-6cd677bdf9eb?list=studio)
+- No class on Friday due to power cut
+
 ## Lab
 Fork and clone the [ECS2020 repo](https://github.com/ECS2020). It has the code we worked on in Friday's class, with some improvements I made (we will talk about these on Thursday). The scene we worked on now looks like this:
 
@@ -49,7 +143,7 @@ Currently, there are 10K entities being created and destroyed. This is a pretty 
 Someone has done something similar with jobs, but not entities in [this repo](https://github.com/adcimon/unity-job-system-mesh-deformer), so might be worth having a look.
 
 
-## Week 7
+## Week 7 - Entity Component System
 ## Lecture
 - [ECS Slides](https://drive.google.com/file/d/1nGoqxueagIqOwTWA7TZ7NpVYfKwhrIMV/view?usp=sharing)
 - [Video of Thursday's class](https://web.microsoftstream.com/video/6ab9cb85-3684-4bf9-a90b-2a7b2257a8f6?list=studio)
